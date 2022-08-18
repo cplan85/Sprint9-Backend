@@ -5,7 +5,7 @@ This project was generated with Node, Nodemon, Express, and MongoDB for the back
 
 ### Built With
 
-Angular is used for the front-end UI Components. Node and Express comprise the backend, and the database is served with MongoDB. Other packages incldue bcrypt.js, cors, jsonwebtoken, express-validator, and mongoose.
+Angular is used for the front-end UI Components. Node and Express comprise the backend, and the database is served with MongoDB. Other packages incldue bcrypt.js, cors, jsonwebtoken, [express-validator](https://express-validator.github.io/docs/), and mongoose.
 
 
 * ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
