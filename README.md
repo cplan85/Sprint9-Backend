@@ -24,7 +24,7 @@ Tools Used:
 
 ## :mortar_board: **What did I learn from this project**
 
-In this project I learned how to create <b>Rest API back-end server</b> that validates users using <b>JWT web tokens</b>.
+In this project I learned how to create <b>Rest API back-end server</b> that validates users using <b>JWT web tokens</b>. The back-end uses a MVC design pattern, and I learned to implement the different middlewares in the main index.js.
 
 
 ---
