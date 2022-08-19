@@ -28,7 +28,7 @@ const createUser = async (req = request, res = response) => {
 
     //Generate the JWT Token
 
-    const token = await generateJWT(dbUser.id, dbUser.name)
+    const token = await generateJWT(dbUser.id, name)
 
     //create user in the DB
     await dbUser.save();
@@ -49,18 +49,52 @@ const createUser = async (req = request, res = response) => {
             msg: 'Please contact administrator'
         })
     }
-    //console.log(email, name, password)
 
-    return res.json({
-        ok: true,
-        msg: 'Create User /new'
-    })
 }
 
-const loginUser = (req, res) => {
+const loginUser = async(req, res) => {
 
     const {email, password} = req.body;
-    console.log(email, password)
+
+    try {
+
+        const dbUser = await User.findOne({email});
+
+        //there is no email
+        if (!dbUser) {
+            return res.status(400).json({
+                ok: false,
+                msg: `The email doesn't exist`
+            });
+        }
+
+        //Confirm that the password matches
+        const validPassword = bcrypt.compareSync(password, dbUser.password);
+
+        if (!validPassword) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Invalid password'
+            })
+        }
+        //GENERATE JSON WEB TOKEN
+        const token = await generateJWT(dbUser.id, dbUser.name)
+
+        //Service Reponse
+        return res.json({
+            ok: true,
+            uid: dbUser.id,
+            name: dbUser.name,
+            token: token
+        })
+    }
+catch (error) {
+    console.log(error);
+    return res.status(500).json({
+        ok: false,
+        msg: 'Speak with the administrator'
+    })
+ }
     
     return res.json({
         ok: true,
