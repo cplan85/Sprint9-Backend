@@ -38,6 +38,7 @@ const createUser = async (req = request, res = response) => {
         ok: true,
         uid: dbUser.id,
         name: name,
+        email: email,
         token: token
     })
 
@@ -85,6 +86,7 @@ const loginUser = async(req, res) => {
             ok: true,
             uid: dbUser.id,
             name: dbUser.name,
+            email: dbUser.email,
             token: token
         })
     }
@@ -102,11 +104,21 @@ catch (error) {
     })
 }
 
-const renewToken = (req, res) => {
+const renewToken = async (req, res) => {
+
+    const { uid, name } = req;
+
+    const dbUser = await User.findById({uid});
+
+    //generate new token
+    const token = await generateJWT(uid, name)
 
     return res.json({
         ok: true,
-        msg: 'Renew/'
+        uid,
+        name,
+        email: dbUser.email,
+        token
     })
 }
 
