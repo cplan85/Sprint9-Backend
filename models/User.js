@@ -15,6 +15,9 @@ const UserSchema = Schema({
         type: String,
         required: true
     },
+    events: Array,
+    maps: Array,
+    friends: Array,
     
 });
 
