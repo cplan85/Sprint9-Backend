@@ -6,7 +6,7 @@ const { validateJWT } = require('../middlewares/validate-jwt');
 
 const router = Router();
 
-//create a new user
+//create a new user//
 router.post('/new', [
 check('name', "You must introduce a name").not().isEmpty(),
 check('email', 'The email is obligatory').isEmail(),
