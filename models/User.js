@@ -6,6 +6,10 @@ const UserSchema = Schema({
         type: String,
         required: true
     },
+    events: {
+        type: Array,
+        required: false
+    },
     email: {
         type: String,
         required: true,
