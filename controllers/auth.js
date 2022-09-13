@@ -5,7 +5,7 @@ const { generateJWT } = require('../helpers/jwt');
 
 const createUser = async (req = request, res = response) => {
 
-    const {email, name, password} = req.body;
+    const {email, name, userName, password} = req.body;
 
     try {
            //verify that email doesn't exist
@@ -15,6 +15,14 @@ const createUser = async (req = request, res = response) => {
             return res.status(400).json({
                 ok: false,
                 msg: 'The user already exists'
+            })
+        }
+
+        const matchingUserName = await User.findOne({userName})
+        if ( matchingUserName ) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'This user name is already in use.'
             })
         }
 
@@ -38,6 +46,7 @@ const createUser = async (req = request, res = response) => {
         ok: true,
         uid: dbUser.id,
         name: name,
+        userName: userName,
         email: email,
         token: token
     })

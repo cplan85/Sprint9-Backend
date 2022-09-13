@@ -6,10 +6,16 @@ const UserSchema = Schema({
         type: String,
         required: true
     },
+    userName: {
+        type: String,
+        required: true,
+        unique: true
+    },
     events: {
         type: Array,
         required: false
     },
+    
     email: {
         type: String,
         required: true,
@@ -19,9 +25,14 @@ const UserSchema = Schema({
         type: String,
         required: true
     },
-    events: Array,
-    maps: Array,
-    friends: Array,
+    maps: {
+        type: Array,
+        required: false,
+    },
+    friends: {
+        type:Array,
+        required: false,
+    }
     
 });
 
