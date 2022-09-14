@@ -3,6 +3,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const { generateJWT } = require('../helpers/jwt');
 
+
 const createUser = async (req = request, res = response) => {
 
     const {email, name, userName, password} = req.body;
@@ -18,15 +19,6 @@ const createUser = async (req = request, res = response) => {
             })
         }
 
-        const matchingUserName = await User.findOne({userName})
-        if ( matchingUserName ) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'This user name is already in use.'
-            })
-        }
-
-    //create user with the model 
     
     const dbUser = new User( req.body)
 
@@ -117,7 +109,7 @@ const renewToken = async (req, res) => {
 
     const { uid, name } = req;
 
-    const dbUser = await User.findById({uid});
+    const dbUser = await User.findById(uid);
 
     //generate new token
     const token = await generateJWT(uid, name)

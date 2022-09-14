@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 
 
 const EventsSchema = Schema({
+    _id: Object,
     name: {
         type: String,
         required: true
