@@ -19,7 +19,7 @@ const allEvents = async (req, res = response) =>{
 
 //FIND ALL EVENTS ASSOCIATED WITH A USER 
 const findAll = async (req, res) => {
-    let {email} = req.params;
+    let {email} = req.body;
     try{
         const matchingEmails = await User.find({email});
         //console.log(`Matching Email`,matchingEmails.length)
@@ -41,8 +41,9 @@ const findAll = async (req, res) => {
 }
 
  // POST ADD ONE -- COMPLETED 12/18/2012
- insertEvent = async (req, res) => {
-    let {name, url, date, startTime, img, min, max,venue, venueUrl, address, promoter, type, lat, long, note} = req.body;
+const insertEvent = async (req, res) => {
+    let {email, name, url, date, startTime, img, min, max,venue, venueImages, venueUrl, address, promoter, type, lat, long,
+        seatmapImg, note} = req.body;
     try{
         const newEvent = await Event.create({
             name: name,
@@ -53,14 +54,16 @@ const findAll = async (req, res) => {
             min: min,
             max: max,
             venue: venue,
-            venueUrl: venueUrl, 
+            venueImages: venueImages,
+            venueUrl: venueUrl,
+            address: address, 
             promoter: promoter,
             type: type,
             lat: lat,
             long: long,
+            seatmapImg: seatmapImg,
             note: note,
         });
-        // New code from 
        // const updated = await Category.updateOne({category},{$push: {products:{name: productName,price} } })
         const updated = await User.updateOne({email},{$push: {events:newEvent } })
         const matchingEmails = await User.find({email});
@@ -79,7 +82,7 @@ const findAll = async (req, res) => {
 
 
 module.exports = {
-    createUser,
-    loginUser,
-    renewToken
+    allEvents,
+    findAll,
+    insertEvent
 }

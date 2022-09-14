@@ -22,6 +22,7 @@ app.use( express.json());
 //Routes
 //use is the middleware and require syntax is similar to import statement in front end.
 app.use(  '/api/auth', require('./routes/auth'))
+app.use(  '/api/events', require('./routes/events'))
 
 
 app.listen(process.env.PORT, () => {
