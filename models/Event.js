@@ -2,6 +2,10 @@ const { Schema, model } = require("mongoose");
 
 
 const EventsSchema = Schema({
+    id: {
+        type: String,
+        required: false,
+    },
     name: {
         type: String,
         required: true
@@ -9,7 +13,6 @@ const EventsSchema = Schema({
     url: {
         type: String,
         required: true,
-        unique: true
     },
     date: {
         type: String,

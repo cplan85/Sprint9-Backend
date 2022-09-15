@@ -121,6 +121,9 @@ const renewToken = async (req, res) => {
         ok: true,
         uid,
         name,
+        userName: dbUser.userName,
+        events: dbUser.events,
+        maps: dbUser.maps,
         email: dbUser.email,
         token
     })

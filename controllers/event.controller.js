@@ -42,10 +42,11 @@ const findAll = async (req, res) => {
 
  // POST ADD ONE -- COMPLETED 12/18/2012
 const insertEvent = async (req, res) => {
-    let {email, name, url, date, startTime, img, min, max, currency, venue, venueImages, venueUrl, address, promoter, type, lat, long,
+    let {email, id, name, url, date, startTime, img, min, max, currency, venue, venueImages, venueUrl, address, promoter, type, lat, long,
         seatmapImg, note} = req.body;
     try{
         const newEvent = await Event.create({
+            id: id,
             name: name,
             url: url,
             date: date,
@@ -65,6 +66,7 @@ const insertEvent = async (req, res) => {
             seatmapImg: seatmapImg,
             note: note,
         });
+        console.log(email, "check email")
        // const updated = await Category.updateOne({category},{$push: {products:{name: productName,price} } })
         const updated = await User.updateOne({email},{$push: {events:newEvent } })
         const matchingEmails = await User.find({email});
