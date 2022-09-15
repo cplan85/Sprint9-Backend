@@ -87,7 +87,10 @@ const loginUser = async(req, res) => {
             ok: true,
             uid: dbUser.id,
             name: dbUser.name,
+            userName: dbUser.userName,
             email: dbUser.email,
+            events: dbUser.events,
+            maps: dbUser.maps,
             token: token
         })
     }

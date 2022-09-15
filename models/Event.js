@@ -32,6 +32,10 @@ const EventsSchema = Schema({
         type: Number,
         required: false,
     },
+    currency: {
+        type: String,
+        required: false,
+    },
     venue: {
         type: String,
         required: false,

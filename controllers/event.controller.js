@@ -42,7 +42,7 @@ const findAll = async (req, res) => {
 
  // POST ADD ONE -- COMPLETED 12/18/2012
 const insertEvent = async (req, res) => {
-    let {email, name, url, date, startTime, img, min, max,venue, venueImages, venueUrl, address, promoter, type, lat, long,
+    let {email, name, url, date, startTime, img, min, max, currency, venue, venueImages, venueUrl, address, promoter, type, lat, long,
         seatmapImg, note} = req.body;
     try{
         const newEvent = await Event.create({
@@ -53,6 +53,7 @@ const insertEvent = async (req, res) => {
             img: img,
             min: min,
             max: max,
+            currency: currency,
             venue: venue,
             venueImages: venueImages,
             venueUrl: venueUrl,
