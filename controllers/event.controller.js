@@ -66,7 +66,6 @@ const insertEvent = async (req, res) => {
             seatmapImg: seatmapImg,
             note: note,
         });
-        console.log(email, "check email")
        // const updated = await Category.updateOne({category},{$push: {products:{name: productName,price} } })
         const updated = await User.updateOne({email},{$push: {events:newEvent } })
         const matchingEmails = await User.find({email});
@@ -83,9 +82,43 @@ const insertEvent = async (req, res) => {
     }
 }
 
+  // DELETE EVENT
+  const deleteEvent = async (req, res) => {
+    let { email, id} = req.body;
+    try{
+       const matchingEmails = await User.findOne({email});
+        if(matchingEmails.events.length>0) {
+
+        const updatedArray = matchingEmails.events
+        await Event.deleteOne({id});
+        matchingEmails.events.forEach( (event,idx) => {
+           // console.log(`Pantry Name from pantry Controller`,obj.pantryName)
+            if (event.id === id) {
+               updatedArray.splice(idx, 1);
+            }
+
+        })
+
+        const updated = await User.updateOne(
+            { email },{ events: updatedArray }
+         );
+        res.send({updated});
+    }
+    else {
+        res.send(`User or event with matching id doesn't exist!`)
+    }
+    }
+    catch(error){
+        res.send({error});
+    };
+}
+
+
+
 
 module.exports = {
     allEvents,
+    deleteEvent,
     findAll,
     insertEvent
 }

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { findAll, insertEvent, allEvents} = require('../controllers/event.controller');
+const { findAll, insertEvent, allEvents, deleteEvent} = require('../controllers/event.controller');
 
 
 const router = Router();
@@ -11,8 +11,11 @@ router.get('/all', allEvents);
 router.get('/', findAll);
 
 
-//Validate and re-evaluate token
+//ADD EVENT TO User's My Events
 router.post('/add', insertEvent);
+
+//DELETE EVENT 
+router.post('/delete', deleteEvent);
 
 
 module.exports = router;
