@@ -113,6 +113,35 @@ const insertEvent = async (req, res) => {
     };
 }
 
+//
+
+const updateEvent = async (req, res) =>{
+    let { email, id, newNote } = req.body;
+    try{
+        const matchingEmails = await User.find({email});
+        if(matchingEmails.length > 0) {
+          const updatedArray = matchingEmails[0].events;
+          updatedArray.forEach((event) => {
+            if(event.id == id) {
+                event.note = newNote;
+            }
+          })
+          
+        const updated = await User.updateOne(
+             { email },{ events: updatedArray }
+         );
+        res.send({updated});
+        }
+        else {
+            res.send(`Event with matching id doesn't exist!`)
+        }
+    }
+    catch(error){
+        res.send({error});
+    };
+}
+
+
 
 
 
@@ -120,5 +149,6 @@ module.exports = {
     allEvents,
     deleteEvent,
     findAll,
-    insertEvent
+    insertEvent,
+    updateEvent
 }

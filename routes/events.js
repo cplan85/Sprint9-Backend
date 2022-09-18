@@ -1,21 +1,23 @@
 const { Router } = require('express');
-const { findAll, insertEvent, allEvents, deleteEvent} = require('../controllers/event.controller');
+const { findAll, insertEvent, allEvents, deleteEvent, updateEvent} = require('../controllers/event.controller');
 
 
 const router = Router();
 
+// GET ALL EVENTS REGARDLESS OF USER
+router.get('/', allEvents);
 
-router.get('/all', allEvents);
+// GET ALL EVENTS BY USER'S EMAIL
+router.get('/user-events', findAll);
 
-//  == This route will give us back all events: ==  //
-router.get('/', findAll);
-
-
-//ADD EVENT TO User's My Events
+//ADD EVENT TO USER'S "MY EVENTS"
 router.post('/add', insertEvent);
 
 //DELETE EVENT 
 router.post('/delete', deleteEvent);
+
+//UPDATE EVENT
+router.post('/update', updateEvent);
 
 
 module.exports = router;
