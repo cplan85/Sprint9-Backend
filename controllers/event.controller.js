@@ -116,14 +116,16 @@ const insertEvent = async (req, res) => {
 //
 
 const updateEvent = async (req, res) =>{
-    let { email, id, newNote } = req.body;
+    let { email, id, note } = req.body;
+
     try{
         const matchingEmails = await User.find({email});
         if(matchingEmails.length > 0) {
           const updatedArray = matchingEmails[0].events;
           updatedArray.forEach((event) => {
             if(event.id == id) {
-                event.note = newNote;
+                //console.log(newNote)
+                event.note = note;
             }
           })
           
