@@ -24,10 +24,28 @@ Tools Used:
 
 ## :mortar_board: **What did I learn from this project**
 
-In this project I learned how to create <b>Rest API back-end server</b> that validates users using <b>JWT web tokens</b>. The back-end uses a MVC design pattern, and I learned to implement the different middlewares in the main index.js.
+In this project I learned how to create <b>Rest API back-end server</b> that validates users using <b>JWT web tokens</b>. The back-end uses a MVC design pattern, and I learned to implement middlewares in the main index.js.
+
+In addition to operations dealing with Users, I included CRUD operations for Events, which are handlded through the interfaces in the front end. Each User is defined with an array of Events, for which they may be able add, update, delete, or get events.
 
 
 ---
+## :scroll: Endpoints
+#### USERS:
+ - POST Login -> localhost:4000/api/auth
+ - POST Register -> localhost:4000/api/auth/new
+ - GET RenewToken-> localhost:4000/api/auth/renew
+#### EVENTS:
+ - GET All Events -> localhost:4000/api/events
+ - GET All Events by User's Email -> localhost:4000/api/events/user-events
+ - POST Add Event -> localhost:4000/api/events/add
+ - POST Delete Event -> localhost:4000/api/events/delete
+ - POST Update Event -> localhost:4000/api/events/update
+####  *MAPS:
+ - GET All Maps -> localhost:4000/api/maps
+ - GET All Maps by User's Email -> localhost:4000/api/maps/user-events
+ - POST Add Event -> localhost:4000/api/maps/add
+ - POST Delete Event -> localhost:4000/api/maps/delete
 
 ## How to Run Back-End Server 
 
