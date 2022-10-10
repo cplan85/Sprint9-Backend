@@ -43,9 +43,9 @@ In addition to operations dealing with Users, I included CRUD operations for Eve
  - POST Update Event -> localhost:4000/api/events/update
 ####  *MAPS:
  - GET All Maps -> localhost:4000/api/maps
- - GET All Maps by User's Email -> localhost:4000/api/maps/user-events
- - POST Add Event -> localhost:4000/api/maps/add
- - POST Delete Event -> localhost:4000/api/maps/delete
+ - GET All Maps by User's Email -> localhost:4000/api/maps/user-maps
+ - POST Add Map -> localhost:4000/api/maps/add
+ - POST Delete Map -> localhost:4000/api/maps/delete
 
 ## How to Run Back-End Server 
 
